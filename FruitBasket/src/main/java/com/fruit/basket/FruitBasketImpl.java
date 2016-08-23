@@ -5,63 +5,48 @@ import java.util.Map;
 
 public class FruitBasketImpl implements FruitBasket {
 
-	private Map<FruitEnum, Integer> fruitRequirements = new LinkedHashMap<>();
+	private Map<FruitEnum, Integer> fruitRequirement = new LinkedHashMap<>();
 
 	@Override
-	public Double calculateFruitPrice(String fruitName, Integer quantity)
+	public Double calculateFruitPrice(Map<FruitEnum, Integer> fruitRequirement)
 			throws InvalidException {
 
-		if (fruitName == null || fruitName.trim().equals("")) {
+		if (fruitRequirement == null || fruitRequirement.isEmpty()) {
 			throw new InvalidException("Fruit Not Available in Basket");
 		}
+		Double price = 0.0;
+		for (Map.Entry<FruitEnum, Integer> fruitRequired : fruitRequirement.entrySet()) {
+			price = price + (fruitRequired.getKey().getFruitPrice() * fruitRequired.getValue());
+		}
+		return price;
+
+	}
+
+	@Override
+	public Map<FruitEnum, Integer> addFruit(String fruitName, Integer quantity) {
 		FruitEnum fruit = null;
 		switch (fruitName.toUpperCase()) {
 		case "BANANA":
 			fruit = FruitEnum.BANANA;
-			addFruit(fruit, quantity);
+			fruitRequirement.put(fruit, quantity);
 			break;
 		case "ORANGE":
 			fruit = FruitEnum.ORANGE;
-			addFruit(fruit, quantity);
+			fruitRequirement.put(fruit, quantity);
 			break;
 		case "PEACH":
 			fruit = FruitEnum.PEACH;
-			addFruit(fruit, quantity);
+			fruitRequirement.put(fruit, quantity);
 			break;
 		case "APPLE":
 			fruit = FruitEnum.APPLE;
-			addFruit(fruit, quantity);
+			fruitRequirement.put(fruit, quantity);
 			break;
 		default:
-			fruit = null;
+			fruitRequirement = null;
 		}
-		return costOfFruits(this.fruitRequirements);
-
+		return fruitRequirement;
 	}
 
-	private void addFruit(FruitEnum fruit, Integer quantity)
-			throws InvalidException {
-		if (fruit == null) {
-			throw new InvalidException("Fruit Not Available in Basket");
-		}
-		fruitRequirements.put(fruit, quantity);
-	}
-
-	private Double costOfFruits(Map<FruitEnum, Integer> fruitRequirement)
-			throws InvalidException {
-		if (fruitRequirement == null || fruitRequirement.isEmpty()) {
-			throw new InvalidException("Fruit Not Available in Basket");
-		}
-		Double sum = 0.0;
-		for (Map.Entry<FruitEnum, Integer> fruitRequired : fruitRequirement
-				.entrySet()) {
-			sum = sum
-					+ (fruitRequired.getKey().getFruitPrice() * fruitRequired
-							.getValue());
-
-		}
-
-		return sum;
-	}
 
 }

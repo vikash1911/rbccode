@@ -1,7 +1,10 @@
 package main.java.com.fruit.basket;
 
-enum FruitEnum {
-	BANANA(25.00), ORANGE(50.00), PEACH(75.00), APPLE(100.00);
+public enum FruitEnum {
+	BANANA(25.00), 
+	ORANGE(50.00), 
+	PEACH(75.00), 
+	APPLE(100.00);
 
 	private final double fruitPrice;
 
