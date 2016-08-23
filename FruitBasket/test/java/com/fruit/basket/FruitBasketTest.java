@@ -34,7 +34,6 @@ public class FruitBasketTest {
 	
 	@Test
 	public void testcalculateFruitPriceAll() throws InvalidException {
-		Double fruitPrice = 0.0;
 		fruitPrice = fruitBasket.calculateFruitPrice(fruitRequirement);
 		Assert.assertEquals("calulatedPrice", new Double(250), fruitPrice);
 	}
