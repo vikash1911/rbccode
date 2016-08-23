@@ -55,8 +55,8 @@ public class FruitBasketImpl implements FruitBasket {
 		Double sum = 0.0;
 		for (Map.Entry<FruitEnum, Integer> fruitRequired : fruitRequirement
 				.entrySet()) {
-			sum = sum + fruitRequired.getKey().getFruitPrice()
-					* fruitRequired.getValue();
+			sum = sum + (fruitRequired.getKey().getFruitPrice()
+					* fruitRequired.getValue());
 
 		}
 
