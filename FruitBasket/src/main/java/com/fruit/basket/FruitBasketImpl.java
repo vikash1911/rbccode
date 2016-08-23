@@ -44,6 +44,7 @@ public class FruitBasketImpl implements FruitBasket {
 			break;
 		default:
 			fruitRequirement = null;
+			break;
 		}
 		return fruitRequirement;
 	}
