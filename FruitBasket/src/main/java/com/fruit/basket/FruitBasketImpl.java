@@ -1,13 +1,10 @@
 package main.java.com.fruit.basket;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
- public class FruitBasketImpl implements FruitBasket {
+public class FruitBasketImpl implements FruitBasket {
 
-	private List<FruitEnum> fruitsRequired = new ArrayList<FruitEnum>();
 	private Map<FruitEnum, Integer> fruitRequirements = new LinkedHashMap<>();
 
 	@Override
@@ -18,7 +15,7 @@ import java.util.Map;
 			throw new InvalidException("Fruit Not Available in Basket");
 		}
 		FruitEnum fruit = null;
-		switch (fruitName) {
+		switch (fruitName.toUpperCase()) {
 		case "BANANA":
 			fruit = FruitEnum.BANANA;
 			addFruit(fruit, quantity);
@@ -38,7 +35,7 @@ import java.util.Map;
 		default:
 			fruit = null;
 		}
-		return costOfFruits(this.fruitsRequired);
+		return costOfFruits(this.fruitRequirements);
 
 	}
 
@@ -48,19 +45,21 @@ import java.util.Map;
 			throw new InvalidException("Fruit Not Available in Basket");
 		}
 		fruitRequirements.put(fruit, quantity);
-		for (int i = 1; i <= quantity; i++) {
-			this.fruitsRequired.add(fruit);
-		}
 	}
 
-	private Double costOfFruits(List<FruitEnum> fruits) throws InvalidException {
-		if (fruits == null || fruits.isEmpty()) {
+	private Double costOfFruits(Map<FruitEnum, Integer> fruitRequirement)
+			throws InvalidException {
+		if (fruitRequirement == null || fruitRequirement.isEmpty()) {
 			throw new InvalidException("Fruit Not Available in Basket");
 		}
 		Double sum = 0.0;
-		for (FruitEnum f : fruits) {
-			sum = sum + f.getFruitPrice();
+		for (Map.Entry<FruitEnum, Integer> fruitRequired : fruitRequirement
+				.entrySet()) {
+			sum = sum + fruitRequired.getKey().getFruitPrice()
+					* fruitRequired.getValue();
+
 		}
+
 		return sum;
 	}
 

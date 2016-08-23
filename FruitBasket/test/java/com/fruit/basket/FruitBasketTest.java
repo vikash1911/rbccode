@@ -29,9 +29,9 @@ public class FruitBasketTest {
 		quantity = 1;
 	}
 
-	 @Rule
-	    public ExpectedException thrown = ExpectedException.none();
-	 
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
+
 	@Test
 	public void testAllPersent() {
 		try {
