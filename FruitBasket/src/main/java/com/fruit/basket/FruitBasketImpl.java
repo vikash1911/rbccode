@@ -55,30 +55,13 @@ public class FruitBasketImpl implements FruitBasket {
 		Double sum = 0.0;
 		for (Map.Entry<FruitEnum, Integer> fruitRequired : fruitRequirement
 				.entrySet()) {
-			sum = sum + (fruitRequired.getKey().getFruitPrice()
-					* fruitRequired.getValue());
+			sum = sum
+					+ (fruitRequired.getKey().getFruitPrice() * fruitRequired
+							.getValue());
 
 		}
 
 		return sum;
-	}
-
-	public Double finalCost(Map<String, Integer> fruitRequirements)
-			throws InvalidException {
-		FruitBasket fruit = new FruitBasketImpl();
-		;
-		Double finalCost = 0.0;
-		for (Map.Entry<String, Integer> fruitRequired : fruitRequirements
-				.entrySet()) {
-			finalCost = fruit.calculateFruitPrice(fruitRequired.getKey(),
-					fruitRequired.getValue());
-		}
-		for (Map.Entry<String, Integer> fruitRequired : fruitRequirements
-				.entrySet()) {
-			fruitRequired.getKey();
-			fruitRequired.getValue();
-		}
-		return finalCost;
 	}
 
 }
