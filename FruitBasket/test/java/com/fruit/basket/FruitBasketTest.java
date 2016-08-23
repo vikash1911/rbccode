@@ -15,12 +15,14 @@ public class FruitBasketTest {
 	private FruitBasket fruitBasket;
 	private int quantity;
 	private Map<FruitEnum, Integer> fruitRequirement;
+	private Double fruitPrice;
 	
 
 	@Before
 	public void setUp() throws Exception {
 		fruitBasket = new FruitBasketImpl();
 		quantity = 1;
+		fruitPrice = 0.0;
 		fruitRequirement = new LinkedHashMap<>();
 		fruitRequirement.put(FruitEnum.BANANA, quantity);
 		fruitRequirement.put(FruitEnum.ORANGE, quantity);
@@ -42,7 +44,6 @@ public class FruitBasketTest {
 		fruitRequirement.clear();
 		fruitRequirement.put(FruitEnum.BANANA, quantity);
 		fruitRequirement.put(FruitEnum.ORANGE, quantity);
-		Double fruitPrice = 0.0;
 		fruitPrice = fruitBasket.calculateFruitPrice(fruitRequirement);
 		Assert.assertEquals("calulatedPrice", new Double(75), fruitPrice);
 	}
@@ -52,7 +53,6 @@ public class FruitBasketTest {
 		fruitRequirement.clear();
 		fruitRequirement.put(FruitEnum.ORANGE, quantity);
 		fruitRequirement.put(FruitEnum.PEACH, quantity);
-		Double fruitPrice = 0.0;
 		fruitPrice = fruitBasket.calculateFruitPrice(fruitRequirement);
 		Assert.assertEquals("calulatedPrice", new Double(125), fruitPrice);
 	}
@@ -62,7 +62,6 @@ public class FruitBasketTest {
 		fruitRequirement.clear();
 		fruitRequirement.put(FruitEnum.PEACH, quantity);
 		fruitRequirement.put(FruitEnum.APPLE, quantity);
-		Double fruitPrice = 0.0;
 		fruitPrice = fruitBasket.calculateFruitPrice(fruitRequirement);
 		Assert.assertEquals("calulatedPrice", new Double(175), fruitPrice);
 	}
@@ -70,7 +69,6 @@ public class FruitBasketTest {
 	@Test(expected=InvalidException.class)
 	public void testWhenNoFruitinBasket() throws InvalidException {
 		fruitRequirement = null;
-		Double fruitPrice = 0.0;
 		fruitPrice = fruitBasket.calculateFruitPrice(fruitRequirement);
 		Assert.assertEquals("Fruit Not Available in Basket", new Double(0.0), fruitPrice);
 		
